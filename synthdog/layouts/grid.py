@@ -4,7 +4,7 @@ Copyright (c) 2022-present NAVER Corp.
 MIT License
 """
 import numpy as np
-
+import pickle
 
 class Grid:
     def __init__(self, config):
@@ -17,7 +17,7 @@ class Grid:
 
     def generate(self, bbox):
         left, top, width, height = bbox
-
+        print("bbox:",bbox)
         text_scale = np.random.uniform(self.text_scale[0], self.text_scale[1])
         text_size = min(width, height) * text_scale
         grids = np.random.permutation(self.max_row * self.max_col)
@@ -56,6 +56,7 @@ class Grid:
 
         layout = []
 
+
         for c in range(col):
             align = self.align[np.random.randint(len(self.align))]
 
@@ -64,5 +65,7 @@ class Grid:
                 w, h = xs[c * 2 + 2] - x, ys[r + 1] - y
                 bbox = [left + x, top + y, w, h]
                 layout.append((bbox, align))
+        #保存layout为pkl
+        print("layout:",layout)
 
         return layout

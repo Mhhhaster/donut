@@ -5,7 +5,7 @@ aspect_ratio: [1, 2]
 
 background:
   image:
-    paths: [resources/background]
+    paths: [resource/background]
     weights: [1]
 
   effect:
@@ -23,7 +23,7 @@ document:
 
   paper:
     image:
-      paths: [resources/paper]
+      paths: [resource/paper]
       weights: [1]
       alpha: [0, 0.2]
       grayscale: 1
@@ -32,9 +32,9 @@ document:
   content:
     margin: [0, 0.1]
     text:
-      path: resources/corpus/zhwiki.txt
+      path: resource/corpus/zhwiki.txt
     font:
-      paths: [resources/font/zh]
+      paths: [resource/font/zh]
       weights: [1]
       bold: 0
     layout:

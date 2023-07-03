@@ -15,7 +15,7 @@ from synthtiger import components, layers, templates
 
 
 class SynthDoG(templates.Template):
-    def __init__(self, config=None, split_ratio: List[float] = [0.8, 0.1, 0.1]):
+    def __init__(self, config=None, split_ratio: List[float] = [1, 0, 0]):  # List[float] = [0.8, 0.1, 0.1]
         super().__init__(config)
         if config is None:
             config = {}
@@ -24,8 +24,8 @@ class SynthDoG(templates.Template):
         self.landscape = config.get("landscape", 0.5)
         self.short_size = config.get("short_size", [720, 1024])
         self.aspect_ratio = config.get("aspect_ratio", [1, 2])
-        self.background = Background(config.get("background", {}))
-        self.document = Document(config.get("document", {}))
+        self.background = Background(config.get("background", {})) #读取背景图片，加上高斯模糊
+        self.document = Document(config.get("document", {}))  #内部调用getcontent，加上内容后进行形变等操作
         self.effect = components.Iterator(
             [
                 components.Switch(components.RGB()),

@@ -1,10 +1,11 @@
+
 """
 Donut
 Copyright (c) 2022-present NAVER Corp.
 MIT License
 """
 import numpy as np
-
+import pickle
 from layouts import Grid
 
 
@@ -30,6 +31,8 @@ class GridStack:
 
     def generate(self, bbox):
         left, top, width, height = bbox
+        #保存bbox为pkl
+        print("bbox_stack",bbox)
 
         stack_spacing = np.random.uniform(self.stack_spacing[0], self.stack_spacing[1])
         stack_spacing *= min(width, height)
@@ -66,9 +69,12 @@ class GridStack:
         spaces *= space / sum(spaces) if sum(spaces) > 0 else 0
         spaces = np.cumsum(spaces)
 
+
         for layout, space in zip(layouts, spaces):
             for bbox, _ in layout:
                 x, y, w, h = bbox
                 bbox[:] = [x, y + space, w, h]
+
+        print("Layout_stack:",layouts)
 
         return layouts
